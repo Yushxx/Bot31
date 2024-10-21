@@ -1,19 +1,18 @@
 {
-  "name": "bot31",
+  "name": "telegram-bot",
   "version": "1.0.0",
-  "description": "welcom du canal 1win de votre application",
+  "description": "Bot Telegram pour accepter les demandes d'adhésion et envoyer des notifications",
   "main": "bot.js",
-  
-  "dependencies": {
-    "node-telegram-bot-api": "^0.59.0",
-    "lodash": "^4.17.21",
-    "node-schedule": "^1.3.2"
-  
-
-  },
   "scripts": {
     "start": "node bot.js"
   },
-  "author": "Votre Nom",
-  "license": "MIT"
+  "dependencies": {
+    "axios": "^1.5.0",  // La version peut varier
+    "node-telegram-bot-api": "^0.61.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "Fadel",
+  "license": "ISC"
 }
