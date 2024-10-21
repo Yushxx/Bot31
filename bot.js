@@ -1,13 +1,12 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios'); // Pour effectuer les requêtes HTTP
-const fs = require('fs'); // Pour lire le fichier vidéo
 const http = require('http');
 
 // Remplace par le token de ton bot
-const token = '7668549885:AAHjZEL_EjINQfkDqTiqQel_t9KsUHzYibc';
+const token = '6980901761:AAF6vdfR6G6pNKb4aA4LfnXfVScdoxhHnSY';
 
 // Remplace par l'ID de ton canal (par exemple: -1001234567890)
-const channelId = '-1001923341484';
+const channelId = '-1002393826308';
 
 // L'URL de ton fichier PHP sur ton serveur
 const phpEndpoint = 'https://solkah.org/ID/rq/save.php';
@@ -24,10 +23,10 @@ bot.on('chat_join_request', (msg) => {
   if (chatId == channelId) {
     // Envoyer une vidéo 5 secondes après la demande
     setTimeout(() => {
-      const videoPath = './video.mp4'; // Chemin vers la vidéo sur ton serveur
+      const videoUrl = 'https://t.me/morxmorcash/19'; // Lien de la vidéo Telegram
 
-      // Envoie la vidéo à l'utilisateur
-      bot.sendVideo(userId, fs.createReadStream(videoPath))
+      // Envoyer la vidéo hébergée sur Telegram
+      bot.sendVideo(userId, videoUrl)
         .then(() => {
           console.log(`Vidéo envoyée à ${userName}`);
 
@@ -98,6 +97,7 @@ Rejoignez vite ces canaux pour débloquer votre accès :`;
     }, 10 * 60 * 1000); // 10 minutes en millisecondes
   }
 });
+
 
 // Créez un serveur HTTP simple qui renvoie "I'm alive" lorsque vous accédez à son URL
 const server = http.createServer((req, res) => {
