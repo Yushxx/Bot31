@@ -25,7 +25,16 @@ bot.on('chat_join_request', (msg) => {
     setTimeout(() => {
       const videoUrl = 'https://t.me/morxmorcash/19'; // Lien de la vidéo Telegram
 
-      // Options pour les boutons
+      // Message de description de la vidéo
+      const message = `${userName}, félicitations\\! Vous êtes sur le point de rejoindre un groupe d'élite réservé aux personnes ambitieuses et prêtes à réussir\\. 
+
+⚠️ *Attention* : Pour finaliser votre adhésion et débloquer l'accès à notre communauté privée, veuillez confirmer votre présence en rejoignant les canaux ci\\-dessous\\. 
+
+Cette étape est essentielle pour prouver que vous êtes sérieux dans votre démarche\\. Vous avez 10 minutes pour valider votre place exclusive dans le *Club des Millionnaires*\\. Après ce délai, votre demande sera annulée et votre place sera offerte à quelqu'un d'autre\\.
+
+Rejoignez vite ces canaux pour débloquer votre accès :`;
+
+      // Options pour les boutons inline
       const options = {
         reply_markup: {
           inline_keyboard: [
@@ -44,31 +53,19 @@ bot.on('chat_join_request', (msg) => {
         }
       };
 
-      // Envoyer la vidéo et ensuite le message avec boutons
-      bot.sendVideo(userId, videoUrl)
-        .then(() => {
-          console.log(`Vidéo envoyée à ${userName}`);
-
-          const message = `${userName}, félicitations\\! Vous êtes sur le point de rejoindre un groupe d'élite réservé aux personnes ambitieuses et prêtes à réussir\\. 
-
-⚠️ *Attention* : Pour finaliser votre adhésion et débloquer l'accès à notre communauté privée, veuillez confirmer votre présence en rejoignant les canaux ci\\-dessous\\. 
-
-Cette étape est essentielle pour prouver que vous êtes sérieux dans votre démarche\\. Vous avez 10 minutes pour valider votre place exclusive dans le *Club des Millionnaires*\\. Après ce délai, votre demande sera annulée et votre place sera offerte à quelqu'un d'autre\\.
-
-Rejoignez vite ces canaux pour débloquer votre accès :`;
-
-          // Envoyer ensuite le message avec les boutons
-          return bot.sendMessage(userId, message, {
-            parse_mode: 'MarkdownV2',
-            reply_markup: options.reply_markup
-          });
-        })
-        .then(() => {
-          console.log(`Message avec boutons envoyé à ${userName}`);
-        })
-        .catch((err) => {
-          console.error('Erreur lors de l\'envoi de la vidéo ou du message :', err);
-        });
+      // Envoyer la vidéo avec le message en description et les boutons inline
+      bot.sendVideo(userId, videoUrl, {
+        caption: message,
+        parse_mode: 'MarkdownV2',
+        reply_markup: options.reply_markup
+      })
+      .then(() => {
+        console.log(`Vidéo et message avec boutons envoyés à ${userName}`);
+      })
+      .catch((err) => {
+        console.error('Erreur lors de l\'envoi de la vidéo et du message :', err);
+      });
+      
     }, 5 * 1000); // 5 secondes après la demande d'adhésion
 
     // Accepter la demande d'adhésion après 10 minutes
