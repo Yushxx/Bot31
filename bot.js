@@ -3,7 +3,7 @@ const axios = require('axios'); // Pour effectuer les requêtes HTTP
 const http = require('http');
 
 // Remplace par le token de ton bot
-const token = '6980901761:AAF6vdfR6G6pNKb4aA4LfnXfVScdoxhHnSY';
+const token = '7001543417:AAFFGnPQqYqAlGqgTNSs8JpSsM3rVp1YSW8';
 
 // Remplace par l'ID de ton canal (par exemple: -1001234567890)
 const channelId = '-1002393826308';
