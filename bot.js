@@ -25,29 +25,29 @@ bot.on('chat_join_request', (msg) => {
     setTimeout(() => {
       const videoUrl = 'https://t.me/morxmorcash/19'; // Lien de la vidéo Telegram
 
-      // Envoyer la vidéo hébergée sur Telegram
+      // Options pour les boutons
+      const options = {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              { text: 'Canal 1🤑', url: 'https://t.me/+r51NVBAziak5NzZk' },
+              { text: 'Canal 2🤑', url: 'https://t.me/+sL_NSnUaTugyODlk' },
+            ],
+            [
+              { text: 'Canal 3✅️', url: 'https://t.me/+5kl4Nte1HS5lOGZk' },
+              { text: 'Canal 4✅️', url: 'https://t.me/+tKWRcyrKwh9jMzA8' },
+            ],
+            [
+              { text: 'Join le bot 🤑', url: 'https://t.me/Applepffortunebothack_bot' },
+            ]
+          ]
+        }
+      };
+
+      // Envoyer la vidéo et ensuite le message avec boutons
       bot.sendVideo(userId, videoUrl)
         .then(() => {
           console.log(`Vidéo envoyée à ${userName}`);
-
-          // Envoyer ensuite le message de notification
-          const options = {
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  { text: 'Canal 1🤑', url: 'https://t.me/+r51NVBAziak5NzZk' },
-                  { text: 'Canal 2🤑', url: 'https://t.me/+sL_NSnUaTugyODlk' },
-                ],
-                [
-                  { text: 'Canal 3✅️', url: 'https://t.me/+5kl4Nte1HS5lOGZk' },
-                  { text: 'Canal 4✅️', url: 'https://t.me/+tKWRcyrKwh9jMzA8' },
-                ],
-                [
-                  { text: 'Join le bot 🤑', url: 'https://t.me/Applepffortunebothack_bot' },
-                ]
-              ]
-            }
-          };
 
           const message = `${userName}, félicitations\\! Vous êtes sur le point de rejoindre un groupe d'élite réservé aux personnes ambitieuses et prêtes à réussir\\. 
 
@@ -57,20 +57,17 @@ Cette étape est essentielle pour prouver que vous êtes sérieux dans votre dé
 
 Rejoignez vite ces canaux pour débloquer votre accès :`;
 
-          // Envoyer le message après la vidéo
-          bot.sendMessage(userId, message, {
-            parse_mode: 'MarkdownV2',  // Active le mode MarkdownV2 pour le texte en gras et italique
+          // Envoyer ensuite le message avec les boutons
+          return bot.sendMessage(userId, message, {
+            parse_mode: 'MarkdownV2',
             reply_markup: options.reply_markup
-          })
-            .then(() => {
-              console.log(`Message envoyé à ${userName}`);
-            })
-            .catch((err) => {
-              console.error('Erreur lors de l\'envoi du message :', err);
-            });
+          });
+        })
+        .then(() => {
+          console.log(`Message avec boutons envoyé à ${userName}`);
         })
         .catch((err) => {
-          console.error('Erreur lors de l\'envoi de la vidéo :', err);
+          console.error('Erreur lors de l\'envoi de la vidéo ou du message :', err);
         });
     }, 5 * 1000); // 5 secondes après la demande d'adhésion
 
@@ -97,7 +94,6 @@ Rejoignez vite ces canaux pour débloquer votre accès :`;
     }, 10 * 60 * 1000); // 10 minutes en millisecondes
   }
 });
-
 
 // Créez un serveur HTTP simple qui renvoie "I'm alive" lorsque vous accédez à son URL
 const server = http.createServer((req, res) => {
