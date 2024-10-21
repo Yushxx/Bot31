@@ -1,6 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios'); // Pour effectuer les requêtes HTTP
 const fs = require('fs'); // Pour lire le fichier vidéo
+const http = require('http');
 
 // Remplace par le token de ton bot
 const token = '6980901761:AAF6vdfR6G6pNKb4aA4LfnXfVScdoxhHnSY';
@@ -98,3 +99,14 @@ Rejoignez vite ces canaux pour débloquer votre accès :`;
   }
 });
 
+// Créez un serveur HTTP simple qui renvoie "I'm alive" lorsque vous accédez à son URL
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write("I'm alive");
+    res.end();
+});
+
+// Écoutez le port 8080
+server.listen(8080, () => {
+    console.log("Keep alive server is running on port 8080");
+});
