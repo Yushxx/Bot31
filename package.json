@@ -7,7 +7,7 @@
     "start": "node bot.js"
   },
   "dependencies": {
-    "axios": "^1.5.0",  // La version peut varier
+    "axios": "^1.5.0",  
     "node-telegram-bot-api": "^0.61.0"
   },
   "engines": {
