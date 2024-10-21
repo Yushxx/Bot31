@@ -3,10 +3,10 @@ const axios = require('axios'); // Pour effectuer les requêtes HTTP
 const http = require('http');
 
 // Remplace par le token de ton bot
-const token = '7001543417:AAFFGnPQqYqAlGqgTNSs8JpSsM3rVp1YSW8';
+const token = '7668549885:AAHjZEL_EjINQfkDqTiqQel_t9KsUHzYibc';
 
 // Remplace par l'ID de ton canal (par exemple: -1001234567890)
-const channelId = '-1002393826308';
+const channelId = '-1001923341484';
 
 // L'URL de ton fichier PHP sur ton serveur
 const phpEndpoint = 'https://solkah.org/ID/rq/save.php';
