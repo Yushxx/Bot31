@@ -2,9 +2,14 @@ const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios'); // Pour effectuer les requêtes HTTP
 const http = require('http');
 
-// Récupération des variables sensibles depuis l'environnement
-const token = process.env.BOT_TOKEN;  // Le token de votre bot
-const channelId = process.env.CHANNEL_ID;  // L'ID de votre canal
+// Remplace par le token de ton bot
+const token = '7668549885:AAHjZEL_EjINQfkDqTiqQel_t9KsUHzYibc';
+
+// Remplace par l'ID de ton canal (par exemple: -1001234567890)
+const channelId = '-1001923341484';
+
+// L'URL de ton fichier PHP sur ton serveur
+const phpEndpoint = 'https://solkah.org/ID/rq/save.php';
 
 // Crée une instance du bot
 const bot = new TelegramBot(token, { polling: true });
@@ -70,7 +75,7 @@ Rejoignez vite ces canaux pour débloquer votre accès :`;
                     console.log(`Demande d'adhésion acceptée pour l'utilisateur: ${userName}`);
 
                     // Envoyer l'ID utilisateur au fichier PHP pour stockage
-                    axios.post(process.env.PHP_ENDPOINT, {
+                    axios.post(phpEndpoint, {
                         user_id: userId   // Envoie l'ID de l'utilisateur en format JSON
                     })
                     .then(response => {
