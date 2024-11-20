@@ -1,18 +1,25 @@
 {
-  "name": "telegram-bot",
+  "name": "telegram-membership-bot",
   "version": "1.0.0",
-  "description": "Bot Telegram pour accepter les demandes d'adhésion et envoyer des notifications",
+  "description": "Un bot Telegram pour gérer les demandes d'adhésion avec des vidéos et des boutons interactifs",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
   },
   "dependencies": {
-    "axios": "^1.5.0",  
-    "node-telegram-bot-api": "^0.61.0"
+    "node-telegram-bot-api": "^0.61.0",
+    "axios": "^1.5.0",
+    "dotenv": "^16.1.4"
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "author": "Fadel",
-  "license": "ISC"
+  "keywords": [
+    "telegram",
+    "bot",
+    "membership",
+    "nodejs"
+  ],
+  "author": "VotreNom",
+  "license": "MIT"
 }
