@@ -1,23 +1,15 @@
 {
-  "name": "bot31",
+  "name": "telegram-bot-elite-club",
   "version": "1.0.0",
-  "description": "Bot Telegram avec Node.js",
-  "main": "bot.js",
+  "description": "Un bot Telegram pour gérer les demandes d'adhésion et envoyer des vidéos avec des boutons interactifs.",
+  "main": "index.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "axios": "^1.5.0",
-    "node-telegram-bot-api": "^0.61.0"
+    "node-telegram-bot-api": "^0.61.0",
+    "axios": "^1.5.0"
   },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "keywords": [
-    "telegram",
-    "bot",
-    "nodejs"
-  ],
-  "author": "Votre Nom",
+  "author": "Fadel",
   "license": "MIT"
 }
