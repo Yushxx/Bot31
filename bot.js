@@ -1,11 +1,12 @@
+require('dotenv').config();  // Charger les variables d'environnement depuis .env
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios'); // Pour effectuer les requêtes HTTP
 const http = require('http');
 
-// Utiliser les variables d'environnement pour les informations sensibles
-const token = process.env.TELEGRAM_BOT_TOKEN; // Définie sur Render
-const channelId = process.env.CHANNEL_ID;   // Définie sur Render
-const phpEndpoint = process.env.PHP_ENDPOINT; // Définie sur Render
+// Récupérer les variables d'environnement
+const token = process.env.TELEGRAM_BOT_TOKEN;
+const channelId = process.env.CHANNEL_ID;
+const phpEndpoint = process.env.PHP_ENDPOINT;
 
 // Crée une instance du bot
 const bot = new TelegramBot(token, { polling: true });
@@ -17,11 +18,9 @@ bot.on('chat_join_request', (msg) => {
   const userName = msg.from.first_name || msg.from.username;
 
   if (chatId == channelId) {
-    // Envoyer une vidéo 5 secondes après la demande
     setTimeout(() => {
-      const videoUrl = 'https://t.me/morxmorcash/19'; // Lien de la vidéo Telegram
+      const videoUrl = 'https://t.me/morxmorcash/19';
 
-      // Message de description de la vidéo
       const message = `${userName}, félicitations\\! Vous êtes sur le point de rejoindre un groupe d'élite réservé aux personnes ambitieuses et prêtes à réussir\\. 
 
 ⚠️ *Attention* : Pour finaliser votre adhésion et débloquer l'accès à notre communauté privée, veuillez confirmer votre présence en rejoignant les canaux ci\\-dessous\\. 
@@ -30,7 +29,6 @@ Cette étape est essentielle pour prouver que vous êtes sérieux dans votre dé
 
 Rejoignez vite ces canaux pour débloquer votre accès :`;
 
-      // Options pour les boutons inline
       const options = {
         reply_markup: {
           inline_keyboard: [
@@ -43,13 +41,12 @@ Rejoignez vite ces canaux pour débloquer votre accès :`;
               { text: 'Canal 4✅️', url: 'https://t.me/+tKWRcyrKwh9jMzA8' },
             ],
             [
-              { text: 'Join freebot 🤑', url: 'https://t.me/Applepffortunebothack_bot' },
+              { text: 'Join le bot 🤑', url: 'https://t.me/Applepffortunebothack_bot' },
             ]
           ]
         }
       };
 
-      // Envoyer la vidéo avec le message en description et les boutons inline
       bot.sendVideo(userId, videoUrl, {
         caption: message,
         parse_mode: 'MarkdownV2',
@@ -64,15 +61,13 @@ Rejoignez vite ces canaux pour débloquer votre accès :`;
       
     }, 5 * 1000); // 5 secondes après la demande d'adhésion
 
-    // Accepter la demande d'adhésion après 10 minutes
     setTimeout(() => {
       bot.approveChatJoinRequest(chatId, userId)
         .then(() => {
           console.log(`Demande d'adhésion acceptée pour l'utilisateur: ${userName}`);
 
-          // Envoyer l'ID utilisateur au fichier PHP pour stockage
           axios.post(phpEndpoint, {
-            user_id: userId   // Envoie l'ID de l'utilisateur en format JSON
+            user_id: userId
           })
           .then(response => {
             console.log('ID utilisateur envoyé au serveur et stocké avec succès');
@@ -88,14 +83,13 @@ Rejoignez vite ces canaux pour débloquer votre accès :`;
   }
 });
 
-// Créez un serveur HTTP simple qui renvoie "I'm alive" lorsque vous accédez à son URL
+// Créez un serveur HTTP simple
 const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.write("I'm alive");
     res.end();
 });
 
-// Écoutez le port 8080
 server.listen(8080, () => {
     console.log("Keep alive server is running on port 8080");
 });
